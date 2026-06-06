@@ -1,0 +1,193 @@
+@import "tailwindcss";
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* VendorBridge Palette - Primary (Slate Blue) */
+  --vb-primary-50: #EEF2F9;
+  --vb-primary-100: #C4D2EA;
+  --vb-primary-400: #7A9CC8;
+  --vb-primary-600: #2E5FA3;
+  --vb-primary-900: #1B2D55;
+
+  /* Accent (Warm Amber) */
+  --vb-accent-50: #FDF4E3;
+  --vb-accent-200: #F9D98A;
+  --vb-accent-500: #E09B2E;
+  --vb-accent-700: #9A6310;
+
+  /* Semantic */
+  --vb-success-fill: #E6F5EE;
+  --vb-success: #2D9A58;
+  --vb-danger-fill: #FEF2F2;
+  --vb-danger: #D63F3F;
+  --vb-warning-fill: #FFF7E6;
+  --vb-warning: #E09B2E;
+
+  /* Neutrals */
+  --vb-page: #F7F8FA;
+  --vb-card: #FFFFFF;
+  --vb-border: #E2E8F0;
+  --vb-body: #4B5568;
+  --vb-heading: #1A202C;
+
+  /* Role accents */
+  --vb-role-admin: #2E5FA3;
+  --vb-role-admin-bg: #1B2D55;
+  --vb-role-procurement: #2D9A58;
+  --vb-role-procurement-bg: #E6F5EE;
+  --vb-role-vendor: #E09B2E;
+  --vb-role-vendor-bg: #FDF4E3;
+  --vb-role-manager: #5B3FC8;
+  --vb-role-manager-bg: #F3F0FE;
+
+  /* Shadcn token mapping (hex - tailwind v4 accepts) */
+  --background: #F7F8FA;
+  --foreground: #1A202C;
+  --card: #FFFFFF;
+  --card-foreground: #1A202C;
+  --popover: #FFFFFF;
+  --popover-foreground: #1A202C;
+  --primary: #2E5FA3;
+  --primary-foreground: #FFFFFF;
+  --secondary: #EEF2F9;
+  --secondary-foreground: #1B2D55;
+  --muted: #EEF2F9;
+  --muted-foreground: #4B5568;
+  --accent: #FDF4E3;
+  --accent-foreground: #9A6310;
+  --destructive: #D63F3F;
+  --destructive-foreground: #FFFFFF;
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --ring: #2E5FA3;
+  --chart-1: #2E5FA3;
+  --chart-2: #2D9A58;
+  --chart-3: #E09B2E;
+  --chart-4: #5B3FC8;
+  --chart-5: #7A9CC8;
+  --sidebar: #1B2D55;
+  --sidebar-foreground: #C4D2EA;
+  --sidebar-primary: #2E5FA3;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #2E5FA3;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #2E5FA3;
+  --sidebar-ring: #2E5FA3;
+}
+
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.929 0.013 255.508);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.551 0.027 264.364);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 { color: var(--vb-heading); }
+}
+
+/* Role sidebar themes */
+[data-role="admin"] { --sidebar: #1B2D55; --sidebar-foreground: #C4D2EA; --sidebar-accent: #2E5FA3; }
+[data-role="procurement"] { --sidebar: #FFFFFF; --sidebar-foreground: #1A202C; --sidebar-accent: #E6F5EE; --sidebar-accent-foreground: #2D9A58; --sidebar-border: #E2E8F0; }
+[data-role="vendor"] { --sidebar: #FFFFFF; --sidebar-foreground: #1A202C; --sidebar-accent: #FDF4E3; --sidebar-accent-foreground: #9A6310; --sidebar-border: #E2E8F0; }
+[data-role="manager"] { --sidebar: #FFFFFF; --sidebar-foreground: #1A202C; --sidebar-accent: #F3F0FE; --sidebar-accent-foreground: #5B3FC8; --sidebar-border: #E2E8F0; }
