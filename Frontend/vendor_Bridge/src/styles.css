@@ -1,31 +1,15 @@
-@import "tailwindcss";
+@import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
-/*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
- */
-
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -34,23 +18,31 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-mid: var(--primary-mid);
+  --color-primary-light: var(--primary-light);
+  --color-primary-lightest: var(--primary-lightest);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-light: var(--accent-light);
+  --color-accent-lightest: var(--accent-lightest);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-fill: var(--destructive-fill);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-fill: var(--success-fill);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning-fill: var(--warning-fill);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-ring-offset-background: var(--background);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -59,74 +51,57 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
 }
 
 :root {
-  --radius: 0.5rem;
-
-  /* VendorBridge Palette - Primary (Slate Blue) */
-  --vb-primary-50: #EEF2F9;
-  --vb-primary-100: #C4D2EA;
-  --vb-primary-400: #7A9CC8;
-  --vb-primary-600: #2E5FA3;
-  --vb-primary-900: #1B2D55;
-
-  /* Accent (Warm Amber) */
-  --vb-accent-50: #FDF4E3;
-  --vb-accent-200: #F9D98A;
-  --vb-accent-500: #E09B2E;
-  --vb-accent-700: #9A6310;
-
-  /* Semantic */
-  --vb-success-fill: #E6F5EE;
-  --vb-success: #2D9A58;
-  --vb-danger-fill: #FEF2F2;
-  --vb-danger: #D63F3F;
-  --vb-warning-fill: #FFF7E6;
-  --vb-warning: #E09B2E;
+  --radius: 0.75rem;
 
   /* Neutrals */
-  --vb-page: #F7F8FA;
-  --vb-card: #FFFFFF;
-  --vb-border: #E2E8F0;
-  --vb-body: #4B5568;
-  --vb-heading: #1A202C;
-
-  /* Role accents */
-  --vb-role-admin: #2E5FA3;
-  --vb-role-admin-bg: #1B2D55;
-  --vb-role-procurement: #2D9A58;
-  --vb-role-procurement-bg: #E6F5EE;
-  --vb-role-vendor: #E09B2E;
-  --vb-role-vendor-bg: #FDF4E3;
-  --vb-role-manager: #5B3FC8;
-  --vb-role-manager-bg: #F3F0FE;
-
-  /* Shadcn token mapping (hex - tailwind v4 accepts) */
   --background: #F7F8FA;
   --foreground: #1A202C;
   --card: #FFFFFF;
   --card-foreground: #1A202C;
   --popover: #FFFFFF;
   --popover-foreground: #1A202C;
-  --primary: #2E5FA3;
-  --primary-foreground: #FFFFFF;
-  --secondary: #EEF2F9;
-  --secondary-foreground: #1B2D55;
-  --muted: #EEF2F9;
-  --muted-foreground: #4B5568;
-  --accent: #FDF4E3;
-  --accent-foreground: #9A6310;
-  --destructive: #D63F3F;
-  --destructive-foreground: #FFFFFF;
   --border: #E2E8F0;
   --input: #E2E8F0;
+  --muted: #EEF2F9;
+  --muted-foreground: #4B5568;
+
+  /* Primary - Slate Blue */
+  --primary: #2E5FA3;
+  --primary-foreground: #FFFFFF;
+  --primary-dark: #1B2D55;
+  --primary-mid: #7A9CC8;
+  --primary-light: #C4D2EA;
+  --primary-lightest: #EEF2F9;
+
+  /* Secondary */
+  --secondary: #EEF2F9;
+  --secondary-foreground: #1B2D55;
+
+  /* Accent - Warm Amber */
+  --accent: #FDF4E3;
+  --accent-foreground: #9A6310;
+  --accent-strong: #E09B2E;
+  --accent-light: #F9D98A;
+  --accent-lightest: #FDF4E3;
+
+  /* Semantic */
+  --success: #2D9A58;
+  --success-foreground: #FFFFFF;
+  --success-fill: #E6F5EE;
+  --destructive: #D63F3F;
+  --destructive-foreground: #FFFFFF;
+  --destructive-fill: #FEF2F2;
+  --warning: #E09B2E;
+  --warning-foreground: #FFFFFF;
+  --warning-fill: #FFF7E6;
+
   --ring: #2E5FA3;
-  --chart-1: #2E5FA3;
-  --chart-2: #2D9A58;
-  --chart-3: #E09B2E;
-  --chart-4: #5B3FC8;
-  --chart-5: #7A9CC8;
+
+  /* Sidebar (Admin default) */
   --sidebar: #1B2D55;
   --sidebar-foreground: #C4D2EA;
   --sidebar-primary: #2E5FA3;
@@ -134,60 +109,64 @@
   --sidebar-accent: #2E5FA3;
   --sidebar-accent-foreground: #FFFFFF;
   --sidebar-border: #2E5FA3;
-  --sidebar-ring: #2E5FA3;
+  --sidebar-ring: #C4D2EA;
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  --background: #0F172A;
+  --foreground: #F1F5F9;
+  --card: #1B2D55;
+  --card-foreground: #F1F5F9;
+  --popover: #1B2D55;
+  --popover-foreground: #F1F5F9;
+  --border: #2E3F66;
+  --input: #2E3F66;
+  --muted: #1B2D55;
+  --muted-foreground: #C4D2EA;
+  --primary: #7A9CC8;
+  --primary-foreground: #0F172A;
+  --secondary: #1B2D55;
+  --secondary-foreground: #F1F5F9;
+  --accent: #1B2D55;
+  --accent-foreground: #F9D98A;
+  --ring: #7A9CC8;
+  --sidebar: #0B1631;
+  --sidebar-foreground: #C4D2EA;
+  --sidebar-primary: #2E5FA3;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #2E5FA3;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #2E3F66;
+}
+
+/* Role-specific sidebar themes */
+[data-role="procurement"] {
+  --sidebar: #0F3D24;
+  --sidebar-foreground: #C6E9D5;
+  --sidebar-primary: #2D9A58;
+  --sidebar-accent: #2D9A58;
+}
+[data-role="vendor"] {
+  --sidebar: #4A2F08;
+  --sidebar-foreground: #F9D98A;
+  --sidebar-primary: #E09B2E;
+  --sidebar-accent: #E09B2E;
+}
+[data-role="manager"] {
+  --sidebar: #2A1F66;
+  --sidebar-foreground: #D5CCF7;
+  --sidebar-primary: #5B3FC8;
+  --sidebar-accent: #5B3FC8;
 }
 
 @layer base {
-  * {
-    border-color: var(--color-border);
-  }
-
+  * { border-color: var(--color-border); }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
   }
-
-  h1, h2, h3, h4, h5, h6 { color: var(--vb-heading); }
+  h1, h2, h3, h4, h5, h6 { color: #1A202C; }
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 { color: #F1F5F9; }
 }
-
-/* Role sidebar themes */
-[data-role="admin"] { --sidebar: #1B2D55; --sidebar-foreground: #C4D2EA; --sidebar-accent: #2E5FA3; }
-[data-role="procurement"] { --sidebar: #FFFFFF; --sidebar-foreground: #1A202C; --sidebar-accent: #E6F5EE; --sidebar-accent-foreground: #2D9A58; --sidebar-border: #E2E8F0; }
-[data-role="vendor"] { --sidebar: #FFFFFF; --sidebar-foreground: #1A202C; --sidebar-accent: #FDF4E3; --sidebar-accent-foreground: #9A6310; --sidebar-border: #E2E8F0; }
-[data-role="manager"] { --sidebar: #FFFFFF; --sidebar-foreground: #1A202C; --sidebar-accent: #F3F0FE; --sidebar-accent-foreground: #5B3FC8; --sidebar-border: #E2E8F0; }
